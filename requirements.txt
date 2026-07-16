@@ -1,0 +1,9 @@
+PySide6
+numpy
+pyqtgraph
+pathlib
+sys
+dataclasses
+io
+pandas
+PIL
