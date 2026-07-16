@@ -14,3 +14,14 @@ This allows users to:
 * export complete point tables for documentation or further processing.
 
 MicroGPS is intended for researchers working with microscopy, spectroscopy and imaging techniques where accurate point relocation across instruments is required.
+
+## Typical workflow
+
+1. Load a reference image (optical microscope, photograph, scan, etc.).
+2. Mark three calibration points you can identify accross instruments.
+3. Create a coordinate system using the corresponding instrument coordinates.
+4. Add measurement points by clicking on the image or entering instrument coordinates.
+5. Display the coordinates of every point in all calibrated coordinate systems.
+6. Export the complete table for use during measurements or subsequent analyses.
+
+Additional coordinate systems can be added at any time, making it straightforward to correlate measurements acquired on multiple instruments using the same reference image.
