@@ -1,0 +1,17 @@
+MicroGPS/
+├── state.py
+├── config.py
+├── main.py
+├── models.py
+├── services.py
+│
+├── core/
+│     ├── transform_utils.py
+│     ├── report_utils.py
+│
+├── gui/
+│     ├── main_window.py
+│     ├── image_view.py
+│     ├── add_point_dialog.py
+│     ├── transform_dialog.py
+│     ├── point_item.py
