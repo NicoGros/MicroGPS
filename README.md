@@ -15,6 +15,22 @@ This allows users to:
 
 MicroGPS is intended for researchers working with microscopy, spectroscopy and imaging techniques where accurate point relocation across instruments is required.
 
+## Installation
+
+### Windows executable (recommended)
+
+Download the latest `MicroGPS.exe` from the releases page.
+
+No Python installation is required. Simply extract the downloaded file and run `MicroGPS.exe`.
+
+### MacOs users
+
+There is no MacOs executable at the moment, but you can have MicroGPS running from source on a Mac.
+
+### Running from source
+
+For developers or users who want to run MicroGPS from Python, follow instructions and recommendations in CONTRIBUTING.md.
+
 ## Typical workflow
 
 1. Load a reference image (optical microscope, photograph, scan, etc.).
