@@ -37,10 +37,16 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-Run:
+Run the application from the repository root:
 
 ```bash
 python run.py
+```
+
+Alternatively, if running directly from the package:
+
+```bash
+python -m MicroGPS.main
 ```
 
 ## Coding style
