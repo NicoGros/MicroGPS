@@ -1,10 +1,18 @@
 """
-MicroGPS 3.0
+MicroGPS
 
-Report utilities.
+Interactive image registration and coordinate transformation tool for
+scientific surface analysis.
 
-Builds tabular representations of all points and their transformed
-coordinates for display/export.
+Reporting utilities.
+
+Generates tabular representations of project data for visualization,
+export and reporting.
+
+Copyright (c) 2026 Nicolas Gros
+
+Licensed under the ? License.
+See the LICENSE file in the project root for details.
 """
 
 import numpy as np
