@@ -1,3 +1,21 @@
+"""
+MicroGPS
+
+Interactive image registration and coordinate transformation tool for
+scientific surface analysis.
+
+Transformation dialog.
+
+Collects calibration coordinates and computes affine transformations
+between image and user-defined coordinate systems.
+
+Copyright (c) 2026 Nicolas Gros
+
+Licensed under the ? License.
+See the LICENSE file in the project root for details.
+"""
+
+
 from PySide6.QtWidgets import (
     QDialog,
     QVBoxLayout,
