@@ -1,11 +1,13 @@
 """
-Application state.
+MicroGPS
 
-This module contains the global application state shared by the
-service and GUI layers.
+Interactive image registration and coordinate transformation tool for
+scientific surface analysis.
 
-The state should never contain GUI objects (widgets, scenes, etc.),
-only application data.
+Copyright (c) 2026 Nicolas Gros
+
+Licensed under the ? License.
+See the LICENSE file in the project root for details.
 """
 
 from dataclasses import dataclass, field
