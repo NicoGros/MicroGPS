@@ -1,7 +1,18 @@
 """
 MicroGPS
 
-Main application window (PySide6 version).
+Interactive image registration and coordinate transformation tool for
+scientific surface analysis.
+
+Main application window.
+
+Creates the graphical user interface, including menus, toolbars,
+dockable widgets and user interactions.
+
+Copyright (c) 2026 Nicolas Gros
+
+Licensed under the ? License.
+See the LICENSE file in the project root for details.
 """
 
 from pathlib import Path
