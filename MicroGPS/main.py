@@ -4,6 +4,11 @@ MicroGPS
 Interactive image registration and coordinate transformation tool for
 scientific surface analysis.
 
+Application entry point.
+
+Creates the Qt application, initializes the main window and starts the
+event loop.
+
 Copyright (c) 2026 Nicolas Gros
 
 Licensed under the ? License.
