@@ -4,6 +4,11 @@ MicroGPS
 Interactive image registration and coordinate transformation tool for
 scientific surface analysis.
 
+Global application state.
+
+Stores the current project data (image, points, coordinate systems,
+transformations and application settings) shared across the application.
+
 Copyright (c) 2026 Nicolas Gros
 
 Licensed under the ? License.
