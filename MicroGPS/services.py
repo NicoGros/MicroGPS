@@ -1,10 +1,13 @@
 """
 MicroGPS
 
-Application services layer.
+Interactive image registration and coordinate transformation tool for
+scientific surface analysis.
 
-This module contains the application business logic. It should never
-depend on the GUI and operates only on the application state.
+Copyright (c) 2026 Nicolas Gros
+
+Licensed under the ? License.
+See the LICENSE file in the project root for details.
 """
 
 from io import BytesIO
