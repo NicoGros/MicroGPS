@@ -1,3 +1,20 @@
+"""
+MicroGPS
+
+Interactive image registration and coordinate transformation tool for
+scientific surface analysis.
+
+Point annotation utilities.
+
+Defines the graphical representation and behaviour of point markers
+displayed in the image viewer.
+
+Copyright (c) 2026 Nicolas Gros
+
+Licensed under the ? License.
+See the LICENSE file in the project root for details.
+"""
+
 from PySide6.QtCore import QRectF, Qt
 from PySide6.QtGui import (
     QColor,
