@@ -1,3 +1,20 @@
+"""
+MicroGPS
+
+Interactive image registration and coordinate transformation tool for
+scientific surface analysis.
+
+Coordinate transformation utilities.
+
+Provides functions for computing and applying affine transformations
+between image coordinates and user-defined coordinate systems.
+
+Copyright (c) 2026 Nicolas Gros
+
+Licensed under the ? License.
+See the LICENSE file in the project root for details.
+"""
+
 import numpy as np
 
 
