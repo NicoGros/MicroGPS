@@ -1,7 +1,18 @@
 """
 MicroGPS
 
-Image viewer based on pyqtgraph.
+Interactive image registration and coordinate transformation tool for
+scientific surface analysis.
+
+Interactive image viewer.
+
+Displays images and graphical annotations while providing pan, zoom,
+point placement and coordinate display.
+
+Copyright (c) 2026 Nicolas Gros
+
+Licensed under the ? License.
+See the LICENSE file in the project root for details.
 """
 
 import numpy as np
