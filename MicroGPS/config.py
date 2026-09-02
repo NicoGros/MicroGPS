@@ -11,7 +11,7 @@ parameters used throughout the application.
 
 Copyright (c) 2026 Nicolas Gros
 
-Licensed under the ? License.
+Licensed under the MIT License.
 See the LICENSE file in the project root for details.
 """
 
