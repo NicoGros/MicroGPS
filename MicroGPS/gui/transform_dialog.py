@@ -25,6 +25,7 @@ from PySide6.QtWidgets import (
     QDialogButtonBox,
     QMessageBox,
 )
+from PySide6.QtCore import QLocale
 
 from MicroGPS.state import state
 from MicroGPS.services import compute_transform
@@ -51,6 +52,9 @@ class TransformDialog(QDialog):
 
             sx = QDoubleSpinBox()
             sy = QDoubleSpinBox()
+
+            sx.setLocale(QLocale.c())
+            sy.setLocale(QLocale.c())
 
             sx.setDecimals(6)
             sy.setDecimals(6)
