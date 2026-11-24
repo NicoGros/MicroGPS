@@ -20,7 +20,9 @@ from pathlib import Path
 from MicroGPS.services import (
     load_image,
     export_points,
+    import_points,
     image_to_coordinates,
+    reset_all,
 )
 
 from MicroGPS.gui.image_view import ImageView
@@ -89,8 +91,13 @@ class MainWindow(QMainWindow):
         self.open_action.triggered.connect(
             self.on_open_image
         )
+        
+        self.import_action = QAction("Import Points", self)
+        self.import_action.triggered.connect(
+            self.on_import
+        )
 
-        self.export_action = QAction("Export", self)
+        self.export_action = QAction("Export Points", self)
         self.export_action.triggered.connect(
             self.on_export
         )
@@ -119,6 +126,11 @@ class MainWindow(QMainWindow):
         self.clear_measurements_action = QAction("Clear Measurements", self)
         self.clear_measurements_action.triggered.connect(
             self.on_clear_measurements
+        )
+
+        self.clear_all_action = QAction("Clear All", self)
+        self.clear_all_action.triggered.connect(
+            self.on_clear_all
         )
 
         self.remove_points_action = QAction(
@@ -157,6 +169,7 @@ class MainWindow(QMainWindow):
 
         file_menu.addAction(self.open_action)
         file_menu.addSeparator()
+        file_menu.addAction(self.import_action)
         file_menu.addAction(self.export_action)
         file_menu.addSeparator()
         file_menu.addAction(self.exit_action)
@@ -177,16 +190,19 @@ class MainWindow(QMainWindow):
         tools_menu.addSeparator()
         tools_menu.addAction(self.clear_calibration_action)
         tools_menu.addAction(self.clear_measurements_action)
+        tools_menu.addAction(self.clear_all_action)
+
 
     # ==========================================================
 
     def _create_toolbar(self):
 
         toolbar = self.addToolBar("Main")
-
         toolbar.setMovable(False)
 
         toolbar.addAction(self.open_action)
+        toolbar.addAction(self.import_action)
+        toolbar.addAction(self.export_action)
         toolbar.addSeparator()
 
         toolbar.addAction(self.add_point_action)
@@ -202,7 +218,7 @@ class MainWindow(QMainWindow):
 
         toolbar.addAction(self.clear_calibration_action)
         toolbar.addAction(self.clear_measurements_action)
-        toolbar.addSeparator()
+        toolbar.addAction(self.clear_all_action)
 
     # ==========================================================
 
@@ -265,6 +281,45 @@ class MainWindow(QMainWindow):
             )
 
     # ==========================================================
+
+    def on_import(self):
+
+        file_path, _ = QFileDialog.getOpenFileName(
+            self,
+            "Import",
+            "",
+            "Text files (*.txt)",
+        )
+
+        if not file_path:
+            return
+
+        try:
+
+            import_points(file_path)
+
+            self.view.refresh_points()
+            self.refresh_point_table()
+            self.refresh_system_table()
+
+            QMessageBox.information(
+                self,
+                "Import",
+                "Import successful."
+            )
+
+            self.statusBar().showMessage(
+                f"Imported: {Path(file_path).name}"
+            )
+
+        except Exception as e:
+
+            QMessageBox.critical(
+                self,
+                "Import Error",
+                str(e),
+            )
+
 
     def on_export(self):
 
@@ -390,18 +445,6 @@ class MainWindow(QMainWindow):
         )
 
         # ==========================================================
-        # Export
-        # ==========================================================
-
-        self.export_table_button = QPushButton(
-            "Export point table and systems"
-        )
-
-        self.export_table_button.clicked.connect(
-            self.on_export
-        )
-
-        # ==========================================================
         # Layout
         # ==========================================================
 
@@ -419,8 +462,6 @@ class MainWindow(QMainWindow):
 
         layout.addWidget(self.system_table)
         layout.addWidget(self.remove_system_button)
-
-        layout.addWidget(self.export_table_button)
 
         # ==========================================================
         # Dock
@@ -600,6 +641,37 @@ class MainWindow(QMainWindow):
         self.view.refresh_points()
         self.refresh_point_table()
         self.refresh_system_table()
+
+    def on_clear_all(self):
+
+        reply = QMessageBox.question(
+            self,
+            "Clear All",
+            (
+                "This will remove the current image, all points "
+                "and all coordinate systems.\n\n"
+                "Are you sure?"
+            ),
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No,
+        )
+
+        if reply != QMessageBox.Yes:
+            return
+
+        reset_all()
+
+        # Clear the graphical display
+        self.view.clear_image()
+
+        # Refresh the tables
+        self.refresh_point_table()
+        self.refresh_system_table()
+
+        # Disable point placement
+        self.add_point_action.setChecked(False)
+
+        self.statusBar().showMessage("Project cleared.")
 
     def on_add_point_coordinates(self):
 
