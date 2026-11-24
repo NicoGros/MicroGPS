@@ -351,3 +351,79 @@ def reset_all() -> None:
     state.project_modified = False
 
 
+# =============================================================================
+# IMPORT
+# =============================================================================
+
+
+def import_points(filepath: str | Path) -> None:
+    """
+    Import points and coordinate transformations from a MicroGPS
+    export text file.
+
+    Replaces the current points and transformations.
+
+    Parameters
+    ----------
+    filepath : str or Path
+        Path to the exported text file.
+    """
+
+    points = []
+    transforms = {}
+
+    # ------------------------------------------------------------
+    # Read transformations
+    # ------------------------------------------------------------
+
+    with open(filepath, "r", encoding="utf-8") as f:
+
+        for line in f:
+
+            if line.startswith("# Transform "):
+
+                parts = line.strip().split()
+
+                name = " ".join(parts[2:-9])
+
+                matrix = np.array(
+                    [float(value) for value in parts[-9:]]
+                ).reshape(3, 3)
+
+                transforms[name] = AffineTransform(
+                    name=name,
+                    matrix=matrix,
+                )
+
+    # ------------------------------------------------------------
+    # Read point table
+    # ------------------------------------------------------------
+
+    df = pd.read_csv(
+        filepath,
+        sep="\t",
+        comment="#",
+    )
+
+    for _, row in df.iterrows():
+
+        point = Point(
+            label=row["label"],
+            kind=row["kind"],
+            image_x=float(row["image_x"]),
+            image_y=float(row["image_y"]),
+        )
+
+        points.append(point)
+
+    # ------------------------------------------------------------
+    # Update application state
+    # ------------------------------------------------------------
+
+    state.points = points
+    state.transforms = transforms
+
+    state.current_system = "image"
+    state.selected_point = None
+
+    state.project_modified = True
