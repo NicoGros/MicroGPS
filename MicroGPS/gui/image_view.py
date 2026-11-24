@@ -103,17 +103,15 @@ class ImageView(pg.PlotWidget):
     def load_image(self):
 
         if state.image is None:
+            self.clear_image()
             return
 
         image = np.asarray(state.image)
 
         # pyqtgraph expects x,y ordering
         if image.ndim == 2:
-
             image = image.T
-
         else:
-
             image = np.transpose(image, (1, 0, 2))
 
         self.image_item.setImage(image)
@@ -127,6 +125,24 @@ class ImageView(pg.PlotWidget):
 
         self.refresh_points()
         self.pointsChanged.emit()
+
+    def clear_image(self):
+
+        # Clear image data
+        self.image_item.clear()
+
+        # Reset image item geometry
+        self.image_item.setRect(0, 0, 0, 0)
+
+        # Remove all point graphics
+        self.clear_points()
+
+        # Reset the view
+        self.viewbox.setRange(
+            xRange=(0, 1),
+            yRange=(0, 1),
+            padding=0,
+        )
 
     # ==============================================================
     # Points
